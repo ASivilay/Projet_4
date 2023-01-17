@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8"/>
+
         <title>Projet 4</title>
         <link rel="stylesheet" href="styles/style.css">
 
     </head>
     <body>
-        <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
         <script src="scripts/script4.js"></script>
-        <script>
-            load_pic("https://m.media-amazon.com/images/M/MV5BOWVmOWRmMWMtMDc2OC00NGM2LTllOTAtMmY5NjVhM2YzYjVlXkEyXkFqcGdeQXVyOTc2MTgwNjY@._V1_UY268_CR3,0,182,268_AL_.jpg")
-            load_pic("https://m.media-amazon.com/images/M/MV5BNDEyYTA5OWEtYjNiYS00MGZlLThjYzEtMTc1Zjk2NDRmZmYxXkEyXkFqcGdeQXVyNzIwNTQyMw@@._V1_UY268_CR1,0,182,268_AL_.jpg")
-            load_pic("https://m.media-amazon.com/images/M/MV5BNjZhYWVhNjktNDRmNS00NGUyLThjZTgtYmU4NmQzYzIyZTk4XkEyXkFqcGdeQXVyMjkxNzQ1NDI@._V1_UY268_CR0,0,182,268_AL_.jpg")
-        </script>
-
         <script src="scripts/script5.js"></script>
-        <script>test()</script>
+        <script>
+            test(
+                "http://localhost:8000/api/v1/titles/?page_size=1&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "bestmovieimage"
+                );
+            test(
+                "http://localhost:8000/api/v1/titles/?page_size=8&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "bestratedimages"
+                );
+            test(
+                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Sci-Fi&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "cat1images"
+                );
+            test(
+                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Comedy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "cat2images"
+                );
+            test(
+                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Fantasy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "cat3images"
+                )
+        </script>
        <header>
         </header>
 
@@ -32,22 +48,28 @@
 
         <section id="bestmovie">   
             <label>Meilleur Film</label>
+            <label id="bestmovietitle"></label>
+            <section id="bestmovieimage"></section>
         </section>
 
         <section id="bestrated">
             <label>Films les mieux notés</label>
+            <section id="bestratedimages"></section>
         </section>
 
         <section id="cat1">
             <label>Catégorie 1</label>
+            <section id="cat1images"></section>
         </section>
 
         <section id="cat2">
             <label>Catégorie 2</label>
+            <section id="cat2images"></section>
         </section>
 
         <section id="cat3">
             <label>Catégorie 3</label>
+            <section id="cat3images"></section>
         </section>
 
         

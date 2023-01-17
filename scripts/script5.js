@@ -1,11 +1,41 @@
-async function test(){
-    url = "http://localhost:8000/api/v1/titles/?page_size=1&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains="
+async function test(url, category){   
     let response = await fetch(url);
     let result = await response.json();
 
-    console.log(result);
+    let titles = new Array();
+    let imageUrls = new Array();
 
+    for(let i = 0; i<result.results.length; i++){
+        titles.push(result.results[i].title);
+        imageUrls.push(result.results[i].image_url);
+        load_pic(result.results[i].image_url, category);
+    }
 
-
+    console.log(titles);
+    console.log(imageUrls);
+    //let bestmovietitle = document.getElementById("bestmovietitle");
 }
 
+async function load_pic(url, category){
+    
+    const options = {
+        method: "GET"
+    }
+
+    let response = await fetch(url, options)
+
+    if(response.status === 200){
+        let imageBlob = await response.blob()
+        let imageObjectURL = URL.createObjectURL(imageBlob)
+
+        let image = document.createElement('img')
+        image.src = imageObjectURL
+        
+        //container = document.getElementById("bestratedimages")
+        container = document.getElementById(category)
+        container.append(image)
+    }
+    else{
+        console.log("HTTP-Error: " + response.status)
+    }
+}
