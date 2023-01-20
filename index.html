@@ -8,27 +8,26 @@
 
     </head>
     <body>
-        <script src="scripts/script4.js"></script>
         <script src="scripts/script5.js"></script>
         <script>
-            test(
+            getMovies(
                 "http://localhost:8000/api/v1/titles/?page_size=1&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
                 "bestmovieimage"
                 );
-            test(
+            getMovies(
                 "http://localhost:8000/api/v1/titles/?page_size=8&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
                 "bestratedimages"
                 );
-            test(
+            getMovies(
                 "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Sci-Fi&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
                 "cat1images"
                 );
-            test(
+            getMovies(
                 "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Comedy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
                 "cat2images"
                 );
-            test(
-                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Fantasy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+            getMovies(
+                "http://localhost:8000/api/v1/titles/?page_size=6&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Fantasy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
                 "cat3images"
                 )
         </script>
@@ -42,9 +41,7 @@
             <a>Catégories</a>
         </nav>
         
-        <ul></ul>
-        <img src="">
-
+       
 
         <section id="bestmovie">   
             <label>Meilleur Film</label>
@@ -73,5 +70,25 @@
         </section>
 
         
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Open Modal</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Some text in the Modal..</p>
+            </div>
+        </div>
+
+
+         <div id="movieModal" class="modal">
+            <div class="modal-content">
+                <span class="closeMovieModal">&times;</span>
+                <p>Some text in the Modal..</p>
+            </div>
+        </div>
+        <script>initModal()</script>
     </body>
 <html>
