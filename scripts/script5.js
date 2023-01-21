@@ -61,18 +61,47 @@ async function getImg(url, category, id){
 
 ///////////////////////////////////////////////////////////////////////////////
 
-function getModal(element){
-    //id = element.id;
-    //id = element.getAttribute("date-movie-id");
-    //console.log(id);
-    //console.log({element}.data('movie-id'));
-    id = element.data("movie-id");
+async function getModal(element){
+    
+    console.log(element);
+    console.log(element.getAttribute("data-movie-id"));
+    id = element.getAttribute("data-movie-id");
     console.log(id);
-
-
+    
+    url = "http://localhost:8000/api/v1/titles/" + id;
+    
+    const options = {
+        method: "GET"
+    }
+    /*
+    fetch(url, options)
+        .then((response => response.json()))
+        .then((data) => console.log(data))
+    */
+    
+    let response = await fetch(url, options);
+    if(response.status === 200){
+        let result = await response.json();
+        console.log(result);
+        document.getElementById("movietitle").innerHTML = "Title: " + result.title;
+        document.getElementById("moviegenres").innerHTML = "Genre(s): " + result.genres;
+        document.getElementById("moviedate").innerHTML = "Date de sortie: " + result.date_published;
+        document.getElementById("movierated").innerHTML = "Rated: " + result.rated;
+        document.getElementById("movieimdbscore").innerHTML = "IMDB Score: " + result.imdb_score;
+        document.getElementById("moviedirector").innerHTML = "Director(s): " + result.directors;
+        document.getElementById("movieactors").innerHTML = "Actors: " + result.actors;
+        document.getElementById("movieduration").innerHTML = "Duration: " + result.duration;
+        document.getElementById("moviecountries").innerHTML = "Country: " + result.countries;
+        document.getElementById("movieboxoffice").innerHTML = "Box Office result: " + result.worldwide_gross_income;
+        document.getElementById("moviedescription").innerHTML = "Description: " + result.description;
+    }
+    else{
+        console.log("HTTP-Error: " + response.status);
+    }
     //let modal = document.getElementById("movieModal");
     //let span = document.getElementById("closeMovieModal");
-
+    let modal = document.getElementById("movieModal");
+    modal.style.display = "block";
 }
 
 
@@ -104,6 +133,12 @@ function initModal(){
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+
+    let movieModal = document.getElementById("movieModal");
+    let span2 = document.getElementsByClassName("close")[1];
+    span2.onclick = function(){
+        movieModal.style.display = "none";
     }
 }
 
