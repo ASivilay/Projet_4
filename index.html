@@ -8,86 +8,46 @@
 
     </head>
     <body>
-        <script src="scripts/script5.js"></script>
+        <script src="scripts/script.js"></script>
         <script>
-            getMovies(
+            createBestMovieSection(
                 "http://localhost:8000/api/v1/titles/?page_size=1&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
-                "bestmovieimage"
+                "bestmovie"
                 );
-            getMovies(
-                "http://localhost:8000/api/v1/titles/?page_size=8&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
-                "bestratedimages"
-                );
-            getMovies(
-                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Sci-Fi&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
-                "cat1images"
-                );
-            getMovies(
-                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Comedy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
-                "cat2images"
-                );
-            getMovies(
-                "http://localhost:8000/api/v1/titles/?page_size=6&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Fantasy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
-                "cat3images"
-                )
         </script>
-       <header>
-        </header>
+        <script>
+            createBestRatedSection(
+                "http://localhost:8000/api/v1/titles/?page_size=8&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "bestrated"
+                );
+        </script>
+        <script>
+            createMoviesSection(
+                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Sci-Fi&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "scifi"
+                );
+            createMoviesSection(
+                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Comedy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "comedy"
+                );
+            createMoviesSection(
+                "http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Animation&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+                "animation"
+                );
+        </script>
+       
+        <header></header>
 
+        <h1>JustStreamit</h1>
         <nav>
-            <h1>JustStreamit</h1>
-            <br/>
-            <a>Accueil</a>
-            <a>Catégories</a>
+            <li><a>Home</a></li>
+            <li><a>Categories</a></li>
+            <li><a>Profile</a></li>
+            <li><a>Contact</a></li>
         </nav>
-        
-       
-
-        <section id="bestmovie">   
-            <label>Meilleur Film</label>
-            <label id="bestmovietitle"></label>
-            <section id="bestmovieimage"></section>
-        </section>
-
-        <section id="bestrated">
-            <label>Films les mieux notés</label>
-            <section id="bestratedimages"></section>
-        </section>
-
-        <section id="cat1">
-            <label>Catégorie 1</label>
-            <section id="cat1images"></section>
-        </section>
-
-        <section id="cat2">
-            <label>Catégorie 2</label>
-            <section id="cat2images"></section>
-        </section>
-
-        <section id="cat3">
-            <label>Catégorie 3</label>
-            <section id="cat3images"></section>
-        </section>
 
         
-       
-
-        <div id="movieModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div id="movietitle"></div>
-                <div id="moviegenres"></div>
-                <div id="moviedate"></div>
-                <div id="movierated"></div>
-                <div id="movieimdbscore"></div>
-                <div id="moviedirector"></div>
-                <div id="movieactors"></div>
-                <div id="movieduration"></div>
-                <div id="moviecountries"></div>
-                <div id="movieboxoffice"></div> 
-                <div id="moviedescription"></div>
-            </div>
-        </div>
+        <script>createModal()</script>
         <script>initModal()</script>
     </body>
 <html>
