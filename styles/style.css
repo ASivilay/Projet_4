@@ -8,13 +8,18 @@ body {
   font-family: Arial;
 }
 
-h1 {
+nav {
+  position: grid;
+  /*font-family: 'Roboto';*/
+}
+
+.nav .h1 {
   color: red;
   text-align: center;
 }
 
-nav {
-  color:rgb(255, 255, 255)
+.nav .a{
+  color:rgb(255, 255, 255);
 }
 
 .wrapper {

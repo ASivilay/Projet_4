@@ -7,21 +7,21 @@ async function createBestMovieSection(url, categoryName){
     if(response.status === 200){
         let result = await response.json();
     
-        //wrapper
+        //wrapper   
         let div = document.createElement('div');
         div.setAttribute("class", "wrapper");
         //wrapper section
         let section = document.createElement('section');
         section.setAttribute("id", categoryName);
-        div.appendChild(section);
         //wrapper section label
         let label = document.createElement('label');
         label.setAttribute("id", categoryName + "title");
         label.innerHTML = "Best All Time Movie: " + result.results[0].title;
-        div.appendChild(label);
+        section.appendChild(label);
         //append all elements in body
+        div.appendChild(section);
         document.body.append(div);
-    
+        //insert image
         getImg(result.results[0].image_url, categoryName, result.results[0].id);    
     } else{
         console.log("HTTP-Error: " + response.status);
@@ -45,27 +45,27 @@ async function createBestRatedSection(url, categoryName){
         //wrapper section
         let section = document.createElement('section');
         section.setAttribute("id", categoryName);
-        div.appendChild(section);
         //wrapper section label
         let label = document.createElement('label');
         label.setAttribute("id", categoryName + "title");
         label.innerHTML = "Best Rated Movies";
-        div.appendChild(label);
+        section.appendChild(label);
         //left button
         let leftButton = document.createElement('button');
         leftButton.setAttribute("class", "leftarrowbtn");
         leftButton.setAttribute("id", categoryName + "moveleft");
-        leftButton.setAttribute("click", () => moveLeftEvent(this.id));
+        leftButton.setAttribute("onclick", "moveLeftEvent(this.id)");
         leftButton.innerHTML = "‹";
-        div.appendChild(leftButton);
+        section.appendChild(leftButton);
         //right button
         let rightButton = document.createElement('button');
         rightButton.setAttribute("class", "rightarrowbtn");
         rightButton.setAttribute("id", categoryName + "moveright");
-        rightButton.setAttribute("click", () => moveRightEvent(this.id));
+        rightButton.setAttribute("onclick", "moveRightEvent(this.id)");
         rightButton.innerHTML = "›";
-        div.appendChild(rightButton);
+        section.appendChild(rightButton);
         //append all elements in body
+        div.appendChild(section);
         document.body.append(div);
         
         //insert images
@@ -77,7 +77,6 @@ async function createBestRatedSection(url, categoryName){
     }
     initDisplaySlider(document.getElementById(categoryName), categoryName);
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,29 +95,29 @@ async function createMoviesSection(url, categoryName){
         //wrapper section
         let section = document.createElement('section');
         section.setAttribute("id", categoryName);
-        div.appendChild(section);
         //wrapper section label
         let label = document.createElement('label');
         label.setAttribute("id", categoryName + "title");
         label.innerHTML = "Best Rated Movies";
-        div.appendChild(label);
+        section.appendChild(label);
         //left button
         let leftButton = document.createElement('button');
         leftButton.setAttribute("class", "leftarrowbtn");
         leftButton.setAttribute("id", categoryName + "moveleft");
-        leftButton.setAttribute("click", () => moveLeftEvent(this.id));
+        leftButton.setAttribute("onclick", "moveLeftEvent(this.id)");
         leftButton.innerHTML = "‹";
-        div.appendChild(leftButton);
+        section.appendChild(leftButton);
         //right button
         let rightButton = document.createElement('button');
         rightButton.setAttribute("class", "rightarrowbtn");
         rightButton.setAttribute("id", categoryName + "moveright");
-        rightButton.setAttribute("click", () => moveRightEvent(this.id));
+        rightButton.setAttribute("onclick", "moveRightEvent(this.id)");
         rightButton.innerHTML = "›";
-        div.appendChild(rightButton);
+        section.appendChild(rightButton);
         //append all elements in body
+        div.appendChild(section);
         document.body.append(div);
-
+        //insert images
         for(let i = 0; i < result.results.length; i++){
             getImg(result.results[i].image_url, categoryName, result.results[i].id);
         }
