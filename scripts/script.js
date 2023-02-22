@@ -8,7 +8,8 @@ async function createBestMovieSection(url, categoryName){
         let result = await response.json();
     
         //wrapper   
-        let div = document.createElement('div');
+        //let div = document.createElement('div');
+        let div = document.getElementById("bestmoviewrapper");
         div.setAttribute("class", "wrapper");
         //wrapper section
         let section = document.createElement('section');
@@ -20,7 +21,7 @@ async function createBestMovieSection(url, categoryName){
         section.appendChild(label);
         //append all elements in body
         div.appendChild(section);
-        document.body.append(div);
+        //document.body.append(div);
         //insert image
         getImg(result.results[0].image_url, categoryName, result.results[0].id);    
     } else{
@@ -40,7 +41,8 @@ async function createBestRatedSection(url, categoryName){
         let result = await response.json();
 
         //wrapper
-        let div = document.createElement('div');
+        //let div = document.createElement('div');
+        let div = document.getElementById("bestratedwrapper");
         div.setAttribute("class", "wrapper");
         //wrapper section
         let section = document.createElement('section');
@@ -66,7 +68,7 @@ async function createBestRatedSection(url, categoryName){
         section.appendChild(rightButton);
         //append all elements in body
         div.appendChild(section);
-        document.body.append(div);
+        //document.body.append(div);
         
         //insert images
         for(let i = 1; i < result.results.length; i++){
