@@ -39,6 +39,7 @@ async function createBestRatedSection(url, categoryName){
     let response = await fetch(url, options);
     if(response.status === 200){
         let result = await response.json();
+        console.log(result);
 
         //wrapper
         //let div = document.createElement('div');
@@ -56,24 +57,26 @@ async function createBestRatedSection(url, categoryName){
         let leftButton = document.createElement('button');
         leftButton.setAttribute("class", "leftarrowbtn");
         leftButton.setAttribute("id", categoryName + "moveleft");
-        leftButton.setAttribute("onclick", "moveLeftEvent(this.id)");
         leftButton.innerHTML = "‹";
         section.appendChild(leftButton);
-        //right button
-        let rightButton = document.createElement('button');
-        rightButton.setAttribute("class", "rightarrowbtn");
-        rightButton.setAttribute("id", categoryName + "moveright");
-        rightButton.setAttribute("onclick", "moveRightEvent(this.id)");
-        rightButton.innerHTML = "›";
-        section.appendChild(rightButton);
         //append all elements in body
         div.appendChild(section);
         //document.body.append(div);
         
-        //insert images
+        //inserting images
         for(let i = 1; i < result.results.length; i++){
             getImg(result.results[i].image_url, categoryName, result.results[i].id);
         }
+        //right button
+        let rightButton = document.createElement('button');
+        rightButton.setAttribute("class", "rightarrowbtn");
+        rightButton.setAttribute("id", categoryName + "moveright");
+        rightButton.innerHTML = "›";
+        section.appendChild(rightButton);
+        //adding click event on buttons
+        leftButton.addEventListener("click", () => moveLeftEvent(leftButton.id));
+        rightButton.addEventListener("click", () => moveRightEvent(rightButton.id));
+
     }else{
         console.log("HTTP-Error: " + response.status);
     }
@@ -106,16 +109,8 @@ async function createMoviesSection(url, categoryName){
         let leftButton = document.createElement('button');
         leftButton.setAttribute("class", "leftarrowbtn");
         leftButton.setAttribute("id", categoryName + "moveleft");
-        leftButton.setAttribute("onclick", "moveLeftEvent(this.id)");
         leftButton.innerHTML = "‹";
         section.appendChild(leftButton);
-        //right button
-        let rightButton = document.createElement('button');
-        rightButton.setAttribute("class", "rightarrowbtn");
-        rightButton.setAttribute("id", categoryName + "moveright");
-        rightButton.setAttribute("onclick", "moveRightEvent(this.id)");
-        rightButton.innerHTML = "›";
-        section.appendChild(rightButton);
         //append all elements in body
         div.appendChild(section);
         document.body.append(div);
@@ -123,6 +118,16 @@ async function createMoviesSection(url, categoryName){
         for(let i = 0; i < result.results.length; i++){
             getImg(result.results[i].image_url, categoryName, result.results[i].id);
         }
+         //right button
+         let rightButton = document.createElement('button');
+         rightButton.setAttribute("class", "rightarrowbtn");
+         rightButton.setAttribute("id", categoryName + "moveright");
+         rightButton.innerHTML = "›";
+         section.appendChild(rightButton);
+         //adding click events on buttons
+         leftButton.addEventListener("click", () => moveLeftEvent(leftButton.id));
+         rightButton.addEventListener("click", () => moveRightEvent(rightButton.id));
+         
     }else{
         console.log("HTTP-Error: " + response.status);
     }
