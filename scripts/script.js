@@ -7,23 +7,59 @@ async function createBestMovieSection(url, categoryName){
     if(response.status === 200){
         let result = await response.json();
     
-        //wrapper   
-        //let div = document.createElement('div');
-        let div = document.getElementById("bestmoviewrapper");
-        div.setAttribute("class", "wrapper");
-        //wrapper section
-        let section = document.createElement('section');
-        section.setAttribute("id", categoryName);
+        //creating wrapper   
+        let wrapperDiv = document.getElementById("bestmoviewrapper");
+        wrapperDiv.setAttribute("class", "wrapper");
         //wrapper section label
         let label = document.createElement('label');
-        label.setAttribute("id", categoryName + "title");
-        label.innerHTML = "Best All Time Movie: " + result.results[0].title;
-        section.appendChild(label);
-        //append all elements in body
-        div.appendChild(section);
-        //document.body.append(div);
+        label.id = categoryName + "title";
+        label.className = categoryName + "label";
+        label.innerHTML = "Best All Time Movie";
+        wrapperDiv.appendChild(label);
+        //wrapper section
+        let section = document.createElement('section');
+        section.id = categoryName;
+        section.className = "bestmoviesection";
+        wrapperDiv.appendChild(section);
+
         //insert image
-        getImg(result.results[0].image_url, categoryName, result.results[0].id);    
+        getImg(result.results[0].image_url, categoryName, result.results[0].id, result.results[0].title);   
+        
+        //second column div
+        let secondColumnDiv = document.createElement('div');
+        secondColumnDiv.className = "secondcolumn";
+        section.appendChild(secondColumnDiv);
+        //best movie details div
+        let bestMovieDetailsDiv = document.createElement('div');
+        bestMovieDetailsDiv.className = "bestmoviedetails";
+        secondColumnDiv.appendChild(bestMovieDetailsDiv);
+        //play button
+        let button = document.createElement('button');
+        button.type = "button";
+        button.className = "bestmoviebutton";
+        button.innerHTML = "PLAY";
+        secondColumnDiv.appendChild(button);
+        //movie title div
+        let bestMovieTitleDiv = document.createElement('div');
+        bestMovieTitleDiv.className = "bestmovietitle";
+        bestMovieTitleDiv.innerHTML = result.results[0].title;
+        bestMovieDetailsDiv.appendChild(bestMovieTitleDiv);
+        //movie directors
+        let bestMovieDirectorsDiv = document.createElement('div');
+        bestMovieDirectorsDiv.className = "bestmoviedirectors";
+        bestMovieDirectorsDiv.innerHTML = "Directors: " + result.results[0].directors;
+        bestMovieDetailsDiv.appendChild(bestMovieDirectorsDiv);
+        //movie actors div
+        let bestMovieActorsDiv = document.createElement('div');
+        bestMovieActorsDiv.className = "bestmovieactors";
+        bestMovieActorsDiv.innerHTML = "Actors: " + result.results[0].actors;
+        bestMovieDetailsDiv.appendChild(bestMovieActorsDiv);
+        //movie year
+        let bestMovieYearDiv = document.createElement('div');
+        bestMovieYearDiv.className = "bestmovieyear";
+        bestMovieYearDiv.innerHTML = "Year: " + result.results[0].year;
+        bestMovieYearDiv.appendChild(bestMovieYearDiv);
+
     } else{
         console.log("HTTP-Error: " + response.status);
     }
@@ -41,8 +77,7 @@ async function createBestRatedSection(url, categoryName){
         let result = await response.json();
         console.log(result);
 
-        //wrapper
-        //let div = document.createElement('div');
+        //creating wrapper
         let div = document.getElementById("bestratedwrapper");
         div.setAttribute("class", "wrapper");
         //wrapper section
@@ -55,22 +90,21 @@ async function createBestRatedSection(url, categoryName){
         section.appendChild(label);
         //left button
         let leftButton = document.createElement('button');
-        leftButton.setAttribute("class", "leftarrowbtn");
-        leftButton.setAttribute("id", categoryName + "moveleft");
+        leftButton.className = "leftarrowbtn";
+        leftButton.id = categoryName + "moveleft";
         leftButton.innerHTML = "‹";
         section.appendChild(leftButton);
         //append all elements in body
         div.appendChild(section);
-        //document.body.append(div);
         
         //inserting images
         for(let i = 1; i < result.results.length; i++){
-            getImg(result.results[i].image_url, categoryName, result.results[i].id);
+            getImg(result.results[i].image_url, categoryName, result.results[i].id, result.results[i].title);
         }
         //right button
         let rightButton = document.createElement('button');
-        rightButton.setAttribute("class", "rightarrowbtn");
-        rightButton.setAttribute("id", categoryName + "moveright");
+        rightButton.className = "rightarrowbtn";
+        rightButton.id = categoryName + "moveright";
         rightButton.innerHTML = "›";
         section.appendChild(rightButton);
         //adding click event on buttons
@@ -94,7 +128,7 @@ async function createMoviesSection(url, categoryName){
     if(response.status === 200){
         let result = await response.json();
 
-        //wrapper
+        //creating wrapper
         let div = document.createElement('div');
         div.setAttribute("class", "wrapper");
         //wrapper section
@@ -102,13 +136,13 @@ async function createMoviesSection(url, categoryName){
         section.setAttribute("id", categoryName);
         //wrapper section label
         let label = document.createElement('label');
-        label.setAttribute("id", categoryName + "title");
-        label.innerHTML = "Best Rated Movies";
+        label.id = categoryName + "title";
+        label.innerHTML = categoryName;
         section.appendChild(label);
         //left button
         let leftButton = document.createElement('button');
-        leftButton.setAttribute("class", "leftarrowbtn");
-        leftButton.setAttribute("id", categoryName + "moveleft");
+        leftButton.className = "leftarrowbtn";
+        leftButton.id = categoryName + "moveleft";
         leftButton.innerHTML = "‹";
         section.appendChild(leftButton);
         //append all elements in body
@@ -116,12 +150,12 @@ async function createMoviesSection(url, categoryName){
         document.body.append(div);
         //insert images
         for(let i = 0; i < result.results.length; i++){
-            getImg(result.results[i].image_url, categoryName, result.results[i].id);
+            getImg(result.results[i].image_url, categoryName, result.results[i].id, result.results[i].title);
         }
          //right button
          let rightButton = document.createElement('button');
-         rightButton.setAttribute("class", "rightarrowbtn");
-         rightButton.setAttribute("id", categoryName + "moveright");
+         rightButton.className = "rightarrowbtn";
+         rightButton.id = categoryName + "moveright";
          rightButton.innerHTML = "›";
          section.appendChild(rightButton);
          //adding click events on buttons
@@ -136,15 +170,16 @@ async function createMoviesSection(url, categoryName){
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-async function getImg(url, categoryName, id){
+async function getImg(url, categoryName, id, movietitle){
         console.log(url);
         let image = document.createElement('img');
         image.src = url;
         image.dataset.movieId = id;
+        image.alt = movietitle;
         
         // image.setAttribute("onclick", "getModal(this)");
         image.setAttribute("class", "item");
-        image.style.display = "grid";
+        image.style.display = "flex";
         
         container = document.getElementById(categoryName);
         container.append(image);
@@ -197,7 +232,7 @@ function moveLeftEvent(id){
     let i = 0;
     let firstImgDisplayed = 0;
     for(let image of images){
-        if(image.style.display == "grid"){
+        if(image.style.display == "flex"){
             firstImgDisplayed = i;
             console.log(firstImgDisplayed);
             break;
@@ -207,7 +242,7 @@ function moveLeftEvent(id){
 
     //SLIDING TO THE LEFT YEAH
     if(leftIsDisplayed == false){
-        images[firstImgDisplayed - 1].style.display = "grid";  //show
+        images[firstImgDisplayed - 1].style.display = "flex";  //show
         images[firstImgDisplayed + 3].style.display = "none";  //hide
     }
      
@@ -252,7 +287,7 @@ function moveRightEvent(id){
     let i = 0;
     let firstImgDisplayed = 0;
     for(let image of images){
-        if(image.style.display == "grid"){
+        if(image.style.display == "flex"){
             firstImgDisplayed = i;
             console.log(firstImgDisplayed);
             break;
@@ -262,7 +297,7 @@ function moveRightEvent(id){
 
     //SLIDING TO THE RIGHT YEAH
     if(rightIsDisplayed == false){
-        images[firstImgDisplayed + 4].style.display = "grid";  //show
+        images[firstImgDisplayed + 4].style.display = "flex";  //show
         images[firstImgDisplayed].style.display = "none";  //hide
     }
      
@@ -303,50 +338,54 @@ function createModal(){
     modalContent.append(img);
 
     //modal details
+    let moviedetails = document.createElement('div');
+    moviedetails.setAttribute("id", "moviedetails");
+    modalContent.append(moviedetails);
+
     let movietitle = document.createElement('div')
     movietitle.setAttribute("id", "movietitle");
-    modalContent.append(movietitle);
+    moviedetails.append(movietitle);
 
     let moviegenres = document.createElement('div')
     moviegenres.setAttribute("id", "moviegenres");
-    modalContent.append(moviegenres);
+    moviedetails.append(moviegenres);
 
 
     let moviedate = document.createElement('div')
     moviedate.setAttribute("id", "moviedate");
-    modalContent.append(moviedate);
+    moviedetails.append(moviedate);
 
     let movierated = document.createElement('div')
     movierated.setAttribute("id", "movierated");
-    modalContent.append(movierated);
+    moviedetails.append(movierated);
 
     let movieimdbscore = document.createElement('div')
     movieimdbscore.setAttribute("id", "movieimdbscore");
-    modalContent.append(movieimdbscore);
+    moviedetails.append(movieimdbscore);
 
     let moviedirector = document.createElement('div')
     moviedirector.setAttribute("id", "moviedirector");
-    modalContent.append(moviedirector);
+    moviedetails.append(moviedirector);
 
     let movieactors = document.createElement('div')
     movieactors.setAttribute("id", "movieactors");
-    modalContent.append(movieactors);
+    moviedetails.append(movieactors);
 
     let movieduration = document.createElement('div')
     movieduration.setAttribute("id", "movieduration");
-    modalContent.append(movieduration);
+    moviedetails.append(movieduration);
 
     let moviecountries = document.createElement('div')
     moviecountries.setAttribute("id", "moviecountries");
-    modalContent.append(moviecountries);
+    moviedetails.append(moviecountries);
 
     let movieboxoffice = document.createElement('div')
     movieboxoffice.setAttribute("id", "movieboxoffice");
-    modalContent.append(movieboxoffice);
+    moviedetails.append(movieboxoffice);
 
     let moviedescription = document.createElement('div')
     moviedescription.setAttribute("id", "moviedescription");
-    modalContent.append(moviedescription);
+    moviedetails.append(moviedescription);
     
     //append modal to body
     modal.append(modalContent);
@@ -401,7 +440,14 @@ async function getModal(element){
     if(response.status === 200){
         let result = await response.json();
         console.log(result)
-            
+        //checking null attributes
+        for(let item in result){
+            let child = result[item];
+            if(child === null){
+                result[item] = "";
+            }
+        }
+
         document.getElementById("movieimage").src = result.image_url;
         document.getElementById("movietitle").innerHTML = "Title: " + result.title;
         document.getElementById("moviegenres").innerHTML = "Genre(s): " + result.genres;
