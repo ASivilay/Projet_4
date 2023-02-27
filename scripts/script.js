@@ -6,6 +6,7 @@ async function createBestMovieSection(url, categoryName){
     let response = await fetch(url, options);
     if(response.status === 200){
         let result = await response.json();
+        //console.log(result);
     
         //creating wrapper   
         let wrapperDiv = document.getElementById("bestmoviewrapper");
@@ -44,11 +45,11 @@ async function createBestMovieSection(url, categoryName){
         bestMovieTitleDiv.className = "bestmovietitle";
         bestMovieTitleDiv.innerHTML = result.results[0].title;
         bestMovieDetailsDiv.appendChild(bestMovieTitleDiv);
-        //movie year
-        let bestMovieYearDiv = document.createElement('div');
-        bestMovieYearDiv.className = "bestmovieyear";
-        bestMovieYearDiv.innerHTML = "Year: " + result.results[0].year;
-        bestMovieDetailsDiv.appendChild(bestMovieYearDiv);
+        //movie year and genres
+        let bestMovieYearGenresDiv = document.createElement('div');
+        bestMovieYearGenresDiv.className = "bestmovieyeargenres";
+        bestMovieYearGenresDiv.innerHTML =  result.results[0].genres + " - " + result.results[0].year;
+        bestMovieDetailsDiv.appendChild(bestMovieYearGenresDiv);
         //movie directors
         let bestMovieDirectorsDiv = document.createElement('div');
         bestMovieDirectorsDiv.className = "bestmoviedirectors";
@@ -75,7 +76,7 @@ async function createBestRatedSection(url, categoryName){
     let response = await fetch(url, options);
     if(response.status === 200){
         let result = await response.json();
-        console.log(result);
+        //console.log(result);
 
         //creating wrapper
         let div = document.getElementById("bestratedwrapper");
@@ -171,7 +172,7 @@ async function createMoviesSection(url, categoryName){
 //////////////////////////////////////////////////////////////////////////////////////////
 
 async function getImg(url, categoryName, id, movietitle){
-        console.log(url);
+        //console.log(url);
         let image = document.createElement('img');
         image.src = url;
         image.dataset.movieId = id;
@@ -190,7 +191,7 @@ async function getImg(url, categoryName, id, movietitle){
 
 function initDisplaySlider(container, categoryName){
     let images = container.getElementsByTagName("img");
-    console.log(images);
+    //console.log(images);
     let i = 0;
     for(let image of images){
         if(i>3){
@@ -205,7 +206,7 @@ function initDisplaySlider(container, categoryName){
 //////////////////////////////////////////////////////////////////////////////////
 
 function moveLeftEvent(id){
-    console.log(id);
+    //console.log(id);
     let leftButton = document.getElementById(id);
     let categoryName = leftButton.closest("div > section").id;
     let sectionContainer = document.getElementById(categoryName);
@@ -234,13 +235,13 @@ function moveLeftEvent(id){
     for(let image of images){
         if(image.style.display == "flex"){
             firstImgDisplayed = i;
-            console.log(firstImgDisplayed);
+            //console.log(firstImgDisplayed);
             break;
         }
         i++;
     }
 
-    //SLIDING TO THE LEFT YEAH
+    //SLIDING TO THE LEFT
     if(leftIsDisplayed == false){
         images[firstImgDisplayed - 1].style.display = "flex";  //show
         images[firstImgDisplayed + 3].style.display = "none";  //hide
@@ -260,7 +261,7 @@ function moveLeftEvent(id){
 ///////////////////////////////////////////////////////////////////////////////////
 
 function moveRightEvent(id){
-    console.log(id);
+    //console.log(id);
     let rightButton = document.getElementById(id);
     let categoryName = rightButton.closest("div > section").id;
     let sectionContainer = document.getElementById(categoryName);
@@ -289,13 +290,13 @@ function moveRightEvent(id){
     for(let image of images){
         if(image.style.display == "flex"){
             firstImgDisplayed = i;
-            console.log(firstImgDisplayed);
+            //console.log(firstImgDisplayed);
             break;
         }
         i++;
     }
 
-    //SLIDING TO THE RIGHT YEAH
+    //SLIDING TO THE RIGHT
     if(rightIsDisplayed == false){
         images[firstImgDisplayed + 4].style.display = "flex";  //show
         images[firstImgDisplayed].style.display = "none";  //hide
@@ -439,7 +440,7 @@ async function getModal(element){
     //console.log("22")
     if(response.status === 200){
         let result = await response.json();
-        console.log(result)
+        //console.log(result)
         //checking null attributes
         for(let item in result){
             let child = result[item];
