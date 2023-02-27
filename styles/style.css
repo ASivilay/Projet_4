@@ -107,6 +107,11 @@ nav a:hover {
   font-size:300%
 }
 
+.wrapper section .bestmoviedetails .bestmovieyear{
+  display: flex;
+  margin-top: 5%;
+}
+
 .wrapper section .bestmoviedetails .bestmovieactors{
   display: flex;
   margin-top: 1%;
@@ -114,11 +119,11 @@ nav a:hover {
 
 .wrapper section .bestmoviedetails .bestmoviedirectors{
   display: flex;
-  margin-top: 5%;
+  margin-top: 1%;
 }
 
 .wrapper section .bestmoviebutton {
-  height: 60px;
+  height: 50px;
   width: 180px;
   font-family: 'Roboto';
   font-size:x-large;

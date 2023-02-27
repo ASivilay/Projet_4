@@ -44,6 +44,11 @@ async function createBestMovieSection(url, categoryName){
         bestMovieTitleDiv.className = "bestmovietitle";
         bestMovieTitleDiv.innerHTML = result.results[0].title;
         bestMovieDetailsDiv.appendChild(bestMovieTitleDiv);
+        //movie year
+        let bestMovieYearDiv = document.createElement('div');
+        bestMovieYearDiv.className = "bestmovieyear";
+        bestMovieYearDiv.innerHTML = "Year: " + result.results[0].year;
+        bestMovieDetailsDiv.appendChild(bestMovieYearDiv);
         //movie directors
         let bestMovieDirectorsDiv = document.createElement('div');
         bestMovieDirectorsDiv.className = "bestmoviedirectors";
@@ -54,11 +59,6 @@ async function createBestMovieSection(url, categoryName){
         bestMovieActorsDiv.className = "bestmovieactors";
         bestMovieActorsDiv.innerHTML = "Actors: " + result.results[0].actors;
         bestMovieDetailsDiv.appendChild(bestMovieActorsDiv);
-        //movie year
-        let bestMovieYearDiv = document.createElement('div');
-        bestMovieYearDiv.className = "bestmovieyear";
-        bestMovieYearDiv.innerHTML = "Year: " + result.results[0].year;
-        bestMovieYearDiv.appendChild(bestMovieYearDiv);
 
     } else{
         console.log("HTTP-Error: " + response.status);
