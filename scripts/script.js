@@ -6,7 +6,7 @@ async function createBestMovieSection(url, categoryName){
     let response = await fetch(url, options);
     if(response.status === 200){
         let result = await response.json();
-        //console.log(result);
+        console.log(result);
     
         //creating wrapper   
         let wrapperDiv = document.getElementById("bestmoviewrapper");
@@ -60,6 +60,18 @@ async function createBestMovieSection(url, categoryName){
         bestMovieActorsDiv.className = "bestmovieactors";
         bestMovieActorsDiv.innerHTML = "Actors: " + result.results[0].actors;
         bestMovieDetailsDiv.appendChild(bestMovieActorsDiv);
+
+        //movie description
+        let movieURL = result.results[0].url;
+        let response2 = await fetch(movieURL, options);
+        if (response2.status === 200){
+            let result2 = await response2.json();
+            console.log(result2);
+            let bestMovieDescriptionDiv = document.createElement('div');
+            bestMovieDescriptionDiv.className = "bestmoviedescription";
+            bestMovieDescriptionDiv.innerHTML = result2.description;
+            bestMovieDetailsDiv.appendChild(bestMovieDescriptionDiv);
+        }
 
     } else{
         console.log("HTTP-Error: " + response.status);
