@@ -84,8 +84,19 @@ nav a:hover {
   display: flex;
 }
 
+
 .wrapper .bestmoviesection{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.wrapper .bestmoviesection .paginationdiv{
   display: inline-flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px 0;
 }
 
 .wrapper .bestmoviesection .secondcolumn{

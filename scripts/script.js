@@ -11,32 +11,31 @@ async function createBestMovieSection(url, categoryName){
         //creating wrapper   
         let wrapperDiv = document.getElementById("bestmoviewrapper");
         wrapperDiv.setAttribute("class", "wrapper");
-        //wrapper section label
-        /*
-        let label = document.createElement('label');
-        label.id = categoryName + "title";
-        label.className = categoryName + "label";
-        label.innerHTML = "Best All Time Movie";
-        wrapperDiv.appendChild(label);
-        */
-        let h3 = document.createElement('h3');
-        h3.id = categoryName + "title";
-        h3.className = categoryName + "h3";
-        h3.innerHTML = "Best All Time Movie";
-        wrapperDiv.appendChild(h3);
+        
         //wrapper section
         let section = document.createElement('section');
         section.id = categoryName;
         section.className = "bestmoviesection";
         wrapperDiv.appendChild(section);
+        //wrapper section h3
+        let h3 = document.createElement('h3');
+        h3.id = categoryName + "title";
+        h3.className = categoryName + "h3";
+        h3.innerHTML = "Best All Time Movie";
+        section.appendChild(h3);
+        //pagination div
+        let paginationDiv = document.createElement('div');
+        paginationDiv.id = "paginationdiv";
+        paginationDiv.className = "paginationdiv";
+        section.appendChild(paginationDiv);
 
         //insert image
-        getImg(result.results[0].image_url, categoryName, result.results[0].id, result.results[0].title);   
+        getImg(result.results[0].image_url, paginationDiv.id, result.results[0].id, result.results[0].title);   
         
         //second column div
         let secondColumnDiv = document.createElement('div');
         secondColumnDiv.className = "secondcolumn";
-        section.appendChild(secondColumnDiv);
+        paginationDiv.appendChild(secondColumnDiv);
         //best movie details div
         let bestMovieDetailsDiv = document.createElement('div');
         bestMovieDetailsDiv.className = "bestmoviedetails";
@@ -103,13 +102,7 @@ async function createBestRatedSection(url, categoryName){
         //wrapper section
         let section = document.createElement('section');
         section.setAttribute("id", categoryName);
-        //wrapper section label
-        /*
-        let label = document.createElement('label');
-        label.setAttribute("id", categoryName + "title");
-        label.innerHTML = "Best Rated Movies";
-        section.appendChild(label);
-        */
+        //wrapper section h3
         let h3 = document.createElement('h3');
         h3.id = categoryName + "title";
         h3.innerHTML = "Best Rated Movies";
@@ -160,13 +153,7 @@ async function createMoviesSection(url, categoryName){
         //wrapper section
         let section = document.createElement('section');
         section.setAttribute("id", categoryName);
-        //wrapper section label
-        /*
-        let label = document.createElement('label');
-        label.id = categoryName + "title";
-        label.innerHTML = categoryName;
-        section.appendChild(label);
-        */
+        //wrapper section h3
         let h3 = document.createElement('h3');
         h3.id = categoryName + "title";
         h3.innerHTML = categoryName;
