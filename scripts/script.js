@@ -12,11 +12,18 @@ async function createBestMovieSection(url, categoryName){
         let wrapperDiv = document.getElementById("bestmoviewrapper");
         wrapperDiv.setAttribute("class", "wrapper");
         //wrapper section label
+        /*
         let label = document.createElement('label');
         label.id = categoryName + "title";
         label.className = categoryName + "label";
         label.innerHTML = "Best All Time Movie";
         wrapperDiv.appendChild(label);
+        */
+        let h3 = document.createElement('h3');
+        h3.id = categoryName + "title";
+        h3.className = categoryName + "h3";
+        h3.innerHTML = "Best All Time Movie";
+        wrapperDiv.appendChild(h3);
         //wrapper section
         let section = document.createElement('section');
         section.id = categoryName;
@@ -97,10 +104,16 @@ async function createBestRatedSection(url, categoryName){
         let section = document.createElement('section');
         section.setAttribute("id", categoryName);
         //wrapper section label
+        /*
         let label = document.createElement('label');
         label.setAttribute("id", categoryName + "title");
         label.innerHTML = "Best Rated Movies";
         section.appendChild(label);
+        */
+        let h3 = document.createElement('h3');
+        h3.id = categoryName + "title";
+        h3.innerHTML = "Best Rated Movies";
+        section.appendChild(h3);
         //left button
         let leftButton = document.createElement('button');
         leftButton.className = "leftarrowbtn";
@@ -148,10 +161,16 @@ async function createMoviesSection(url, categoryName){
         let section = document.createElement('section');
         section.setAttribute("id", categoryName);
         //wrapper section label
+        /*
         let label = document.createElement('label');
         label.id = categoryName + "title";
         label.innerHTML = categoryName;
         section.appendChild(label);
+        */
+        let h3 = document.createElement('h3');
+        h3.id = categoryName + "title";
+        h3.innerHTML = categoryName;
+        section.appendChild(h3);
         //left button
         let leftButton = document.createElement('button');
         leftButton.className = "leftarrowbtn";
@@ -347,7 +366,8 @@ function createModal(){
     //img
     let img = document.createElement('img');
     img.setAttribute("id", "movieimage");
-    img.setAttribute("alt", "");
+    img.setAttribute("alt", "movie image");
+    img.src = "data:,";
     modalContent.append(img);
 
     //modal details
@@ -462,6 +482,7 @@ async function getModal(element){
         }
 
         document.getElementById("movieimage").src = result.image_url;
+        document.getElementById("movieimage").alt = result.original_title;
         document.getElementById("movietitle").innerHTML = "Title: " + result.title;
         document.getElementById("moviegenres").innerHTML = "Genre(s): " + result.genres;
         document.getElementById("moviedate").innerHTML = "Release date: " + result.date_published;

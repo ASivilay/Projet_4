@@ -165,6 +165,13 @@ nav a:hover {
   margin: 20px;
 }
 
+.wrapper h3{
+  color:white;
+  clear: both;
+  width: 100%;
+  margin: 20px;
+}
+
 .wrapper section .leftarrowbtn {
   top: 0;
   bottom: 0;
