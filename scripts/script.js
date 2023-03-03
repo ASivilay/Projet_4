@@ -78,7 +78,6 @@ async function createBestMovieSection(url, categoryName){
             bestMovieDescriptionDiv.innerHTML = result2.description;
             bestMovieDetailsDiv.appendChild(bestMovieDescriptionDiv);
         }
-
     } else{
         console.log("HTTP-Error: " + response.status);
     }
@@ -94,7 +93,6 @@ async function createBestRatedSection(url, categoryName){
     let response = await fetch(url, options);
     if(response.status === 200){
         let result = await response.json();
-        //console.log(result);
 
         //creating wrapper
         let div = document.getElementById("bestratedwrapper");
@@ -129,7 +127,6 @@ async function createBestRatedSection(url, categoryName){
         //adding click event on buttons
         leftButton.addEventListener("click", () => moveLeftEvent(leftButton.id));
         rightButton.addEventListener("click", () => moveRightEvent(rightButton.id));
-
     }else{
         console.log("HTTP-Error: " + response.status);
     }
@@ -180,7 +177,6 @@ async function createMoviesSection(url, categoryName){
          //adding click events on buttons
          leftButton.addEventListener("click", () => moveLeftEvent(leftButton.id));
          rightButton.addEventListener("click", () => moveRightEvent(rightButton.id));
-         
     }else{
         console.log("HTTP-Error: " + response.status);
     }
@@ -190,13 +186,10 @@ async function createMoviesSection(url, categoryName){
 //////////////////////////////////////////////////////////////////////////////////////////
 
 async function getImg(url, categoryName, id, movietitle){
-        //console.log(url);
         let image = document.createElement('img');
         image.src = url;
         image.dataset.movieId = id;
         image.alt = movietitle;
-        
-        // image.setAttribute("onclick", "getModal(this)");
         image.setAttribute("class", "item");
         image.style.display = "flex";
         
@@ -209,7 +202,6 @@ async function getImg(url, categoryName, id, movietitle){
 
 function initDisplaySlider(container, categoryName){
     let images = container.getElementsByTagName("img");
-    //console.log(images);
     let i = 0;
     for(let image of images){
         if(i>3){
@@ -224,7 +216,6 @@ function initDisplaySlider(container, categoryName){
 //////////////////////////////////////////////////////////////////////////////////
 
 function moveLeftEvent(id){
-    //console.log(id);
     let leftButton = document.getElementById(id);
     let categoryName = leftButton.closest("div > section").id;
     let sectionContainer = document.getElementById(categoryName);
@@ -253,7 +244,6 @@ function moveLeftEvent(id){
     for(let image of images){
         if(image.style.display == "flex"){
             firstImgDisplayed = i;
-            //console.log(firstImgDisplayed);
             break;
         }
         i++;
@@ -279,7 +269,6 @@ function moveLeftEvent(id){
 ///////////////////////////////////////////////////////////////////////////////////
 
 function moveRightEvent(id){
-    //console.log(id);
     let rightButton = document.getElementById(id);
     let categoryName = rightButton.closest("div > section").id;
     let sectionContainer = document.getElementById(categoryName);
@@ -308,7 +297,6 @@ function moveRightEvent(id){
     for(let image of images){
         if(image.style.display == "flex"){
             firstImgDisplayed = i;
-            //console.log(firstImgDisplayed);
             break;
         }
         i++;
@@ -344,7 +332,7 @@ function createModal(){
     modalContent.setAttribute("class", "modal-content");
     modalContent.setAttribute("id", "modal-content");
 
-    //span
+    //span - closing button
     let span = document.createElement('span');
     span.setAttribute("class","close");
     span.innerHTML ="&times;";
@@ -415,27 +403,18 @@ function createModal(){
 ///////////////////////////////////////////////////////////////////////////////
 
 function initModal(){
-    // Get the modal
+    //Get the modal
     let movieModal = document.getElementById("movieModal");
-    
-    // Get the button that opens the modal
-    //let btn = document.getElementById("myBtn");
-    //console.log(btn);
 
-    // Get the <span> element that closes the modal
+    //Get the <span> element that closes the modal
     let span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, open the modal
-    //btn.onclick = function() {
-    //    modal.style.display = "block";
-    //}
-
-    // When the user clicks on <span> (x), close the modal
+    //When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         movieModal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
+    //When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == movieModal) {
             movieModal.style.display = "none";
@@ -454,12 +433,11 @@ async function getModal(element){
         method: "GET"
     }
     
-    //console.log("11")
-    let response = await fetch(url, options);
-    //console.log("22")
+    response = await fetch(url, options);
+
     if(response.status === 200){
         let result = await response.json();
-        //console.log(result)
+
         //checking null attributes
         for(let item in result){
             let child = result[item];
