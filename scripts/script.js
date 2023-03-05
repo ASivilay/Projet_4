@@ -1,3 +1,26 @@
+function appendCategories(){
+    let categories = [
+        ["http://localhost:8000/api/v1/titles/?page_size=1&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+        "bestmovie"],
+        ["http://localhost:8000/api/v1/titles/?page_size=8&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+        "bestrated"],
+        ["http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Sci-Fi&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+        "Scifi"],
+        ["http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Comedy&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+        "Comedy"],
+        ["http://localhost:8000/api/v1/titles/?page_size=7&year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=Animation&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=",
+        "Animation"]
+    ]
+
+    createBestMovieSection(categories[0][0], categories[0][1]);
+    createBestRatedSection(categories[1][0], categories[1][1]);
+    for(let i = 2; i < categories.length; i++){
+        createMoviesSection(categories[i][0], categories[i][1]);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 async function createBestMovieSection(url, categoryName){
     const options = {
         method: "GET"
